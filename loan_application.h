@@ -10,13 +10,13 @@ class loan_application {
 		loan_application();		
 		loan_application(string applicant_full_name, int years_of_relevant_education,
 	                         int years_of_relevant_experience, int loan_amount,
-				 int* estimated_yearly_profits);
+				 double priority);
 		string getName();
 		int getYearsEducation();
 		int getYearsExperience();		
 		int getLoanAmount();
-		int* getProfits();
-
+		double getPriority();
+		
 		bool operator< (const loan_application& rhs) const;
 
 		bool operator== (const loan_application& rhs) const;
@@ -29,17 +29,12 @@ class loan_application {
 
 		bool operator!= (const loan_application& rhs) const;
 
-		int& operator[] (unsigned i);	
-
-		friend ostream &operator<<( ostream &output, const loan_application &p );
-
+		friend ostream &operator<<( ostream &output, const loan_application &application );
+		
 	private:
 		string full_name;
 		int years_of_education;
 		int years_of_exprience;
 		int loanAmount;
-		int* profits;
-		int* list_integer_array;
-		int n;
-		int a[5000];							
+		double priority_;							
 };
