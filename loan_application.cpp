@@ -3,17 +3,18 @@
 	loan_application::loan_application()
 	{
 	}
+
 	loan_application::loan_application (string applicant_full_name, 
-						 int years_of_relevant_education,
-                 			         int years_of_relevant_experience, 
-                                                 int loan_amount,
-	                                         int* estimated_yearly_profits)
+				            int years_of_relevant_education,
+                 			    int years_of_relevant_experience, 
+                                            int loan_amount,
+	                                    double priority)
 	{
 		full_name = applicant_full_name;
 		years_of_education = years_of_relevant_education;
 		years_of_exprience = years_of_relevant_experience;
 		loanAmount = loan_amount;
-		profits = estimated_yearly_profits;
+		priority_ = priority;
 	}
 
 
@@ -37,17 +38,17 @@
 		return loanAmount;
 	}
 
-	int* loan_application::getProfits()
+	double loan_application::getPriority()
 	{
-		return profits;
+		return priority_;
 	}
 
 	bool loan_application::operator< (const loan_application& rhs) const{
-		return (n > rhs.n);
+		return (priority_ > rhs.priority_);
 	}
 
 	bool loan_application::operator== (const loan_application& rhs) const{
-		return (n == rhs.n);
+		return (priority_ == rhs.priority_);
 	}
 
 	bool loan_application::operator> (const loan_application& rhs) const {
@@ -65,12 +66,9 @@
 	bool loan_application::operator!= (const loan_application& rhs) const {
                 return !((*this) == rhs);
         }
-
-	int& loan_application::operator[] (unsigned i) {
-		return a[i];
-	}
-
-	ostream &operator<<( ostream &output, const loan_application &p ) { 
-        	output << p.full_name;
+	
+	ostream &operator<<( ostream &output, const loan_application &application ) { 
+        	output << application.full_name << "," << application.loanAmount;
         	return output;            
       	}
+	
